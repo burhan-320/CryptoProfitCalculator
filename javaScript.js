@@ -53,10 +53,13 @@ async function getPrice(cryptoCurrency) {
   try {
     const res = await fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=250&page=1&sparkline=false`
+      // ` https://api.coingecko.com/api/v3/simple/price?ids=${cryptoCurrency}&vs_currencies=usd`
     );
     const data = await res.json();
+
     const cryptoElement = data.find((ele) => ele.symbol === cryptoCurrency);
     document.querySelector("#Market-price").value = cryptoElement.current_price;
+
     return cryptoElement.current_price;
     // console.log(cryptoElement);
   } catch (error) {
